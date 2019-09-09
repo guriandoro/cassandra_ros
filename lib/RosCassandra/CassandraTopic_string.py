@@ -5,7 +5,7 @@ from rospy_message_converter import json_message_converter
 import genpy
 
 import pycassa
-import simplejson as json
+import json
 
 from CassandraTopic_ import *
 
