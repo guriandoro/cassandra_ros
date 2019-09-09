@@ -9,7 +9,7 @@ import rostopic
 import genpy.dynamic
 
 import rosbag
-import simplejson as json
+import json
 import hashlib
 import time
 import StringIO
