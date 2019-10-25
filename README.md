@@ -391,8 +391,11 @@ To get a list of all currently stored topics, use the parameter 'list':
 $ rosrun  cassandra_ros cassandraBag-cli.py list
 ```
 Use record to store online messages, while option -f denotes the storage-format
-rosrun cassandra_ros cassandraBag-cli.py record -f string start topic and use
-record stop to finish recoring
+
+``` bash
+$ rosrun cassandra_ros cassandraBag-cli.py record -f string start topic 
+```
+and use record stop to finish recoring
 
 ``` bash
 $ rosrun cassandra_ros cassandraBag-cli.py record stop topic
