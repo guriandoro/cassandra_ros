@@ -5,8 +5,9 @@
 		<param name="video_device"	type="string"	value="/dev/video0"/>
 		<param name="camera_frame_id"	type="string"	value="usb_cam"/>
 		<param name="io_method"		type="string"	value="mmap"/>
-		<param name="image_width"	type="int"	value="320"/>
-		<param name="image_height"	type="int"	value="240"/>
+		<param name="image_width"	type="int"	value="640"/>
+		<param name="image_height"	type="int"	value="480"/>
+                <param name="autofocus"         type="boolean"  value="true"/>
 		<param name="pixel_format"	type="string"	value="yuyv"/>
 		<rosparam param="D">[0.025923, -0.069177, -0.002558, -0.008959, 0.000000]</rosparam>
 		<rosparam param="K">[1354.768099, 0.0, 723.738031, 0.0, 1356.739603, 552.577576, 0.0, 0.0, 1.0]</rosparam>
