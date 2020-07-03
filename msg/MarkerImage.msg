@@ -1,0 +1,9 @@
+Header header
+uint32 marker_id
+geometry_msgs/Pose marker_pose
+uint32 image_height
+uint32 image_width
+string image_encoding
+uint8 image_is_bigendian
+uint32 image_step
+uint8[] image_data
