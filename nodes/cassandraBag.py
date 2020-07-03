@@ -321,18 +321,19 @@ if __name__ == "__main__":
     keyspace =  rospy.get_param('/cassandraBag/keyspace', "test")
 
     rosCas = rc.RosCassandra(host, port)
-    rospy.loginfo("connected to Cassandra on %s:%d"%(host,port))
-
-#    rosCas.dropKeyspace(keyspace)
+    #rosCas.dropKeyspace(keyspace)
     if not rosCas.connectToKeyspace(keyspace):
         rosCas.createKeyspace(keyspace)
 
     rosCas.connectToKeyspace(keyspace)
-    rospy.loginfo("connected to Keyspace \"%s\""%(keyspace))
 
     bag = {}
 
     rospy.init_node('cassandraBag')
+    rospy.loginfo("---> Node initialized")
+    rospy.loginfo("-----> Connected to Cassandra on %s:%d"%(host,port))
+    rospy.loginfo("-----> Connected to Keyspace \"%s\""%(keyspace))
+
     service = {}
     service['record']   = rospy.Service('cassandra_record',     record,     handle_record)
     service['play']     = rospy.Service('cassandra_play',       play,       handle_play)
@@ -340,7 +341,7 @@ if __name__ == "__main__":
     service['info']     = rospy.Service('cassandra_info',       info,       handle_info)
     service['truncate'] = rospy.Service('cassandra_truncate',   truncate,   handle_truncate)
 
-    rospy.loginfo("start listening ... ")
+    rospy.loginfo("---> Start listening")
     rospy.spin()
 
     for _bag in bag.itervalues():
