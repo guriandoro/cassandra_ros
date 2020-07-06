@@ -103,6 +103,7 @@ class CassandraTopic(CassandraTopic_): #, CassandraTopic_ros, CassandraTopic_str
             self.msg_package = msg_class.__module__.split(".")[0]
             self.msg_class   = msg_class.__name__
         
+        #print("---> OJO CHE: package es: %s _y_ class es: %s", self.msg_package, self.msg_class)
         self.MsgClass           = genpy.message.get_message_class(self.msg_package+"/"+self.msg_class)
         
         if not self.MsgClass:
@@ -203,4 +204,3 @@ class CassandraTopic(CassandraTopic_): #, CassandraTopic_ros, CassandraTopic_str
     def countData(self):
         self.cursor.execute("select count(*) from '"+self.column.column_family+"'")
         return self.cursor.fetchone()[0]
-        

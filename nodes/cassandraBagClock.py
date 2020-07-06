@@ -8,8 +8,8 @@ rospy.init_node('cassandraBagClock', disable_rostime=True)
 pub = rospy.Publisher('/clock', Clock, queue_size=10)
 print "node initialized"
 
-secs = 1590284291
-usecs = 861526012
+secs = 1593189911
+usecs = 500000000
 
 t = rospy.Time(secs, usecs)
 r = rospy.Rate(1) # 10hz

@@ -91,7 +91,7 @@ class RosCassandraBag(QThread):
         if not self.play_filter or self.play_filter == "":
             self.play_filter = None
 
-        self.publisher = rospy.Publisher(self.casTopic.topic, self.casTopic.MsgClass)
+        self.publisher = rospy.Publisher(self.casTopic.topic, self.casTopic.MsgClass, queue_size=100)
         # start thread
         self.start()
 
