@@ -4,12 +4,6 @@
   <node pkg="tf" type="static_transform_publisher" name="world_to_cam" 
     args="0 0 0.5 -1.57 0 -1.57 world camera 1" />
 
-  <?ignore
-  <node pkg="image_view" type="image_view" name="image_view" args="image:=/camera/image_raw _image_transport:=compressed">
-      <param name="autosize" type="boolean" value="true"/>
-  </node>
-  ?>
-
   <node pkg="rviz" type="rviz" name="rviz"
     args="-d $(find ar_pose)/demo/demo_single.rviz"/>
 
@@ -21,11 +15,10 @@
   <node pkg="topic_tools" type="relay" name="relay_image"
     args ="/sync_image /camera/image_rect" />
 
-  <?ignore
-  TODO: agregar ROSBag que grabe para verificación posterior
-  TODO: agregar proceso que detecta marcadores publicados por ar_pose, busca imagen correspondiente de /cam/image_rect y los
-        guarda en Cassandra, usando Cassandra_ROS
+  <?ignore ### If needed, this can be uncommented, to have visualization
+  <node pkg="image_view" type="image_view" name="image_view" args="image:=/camera/image_raw _image_transport:=compressed">
+      <param name="autosize" type="boolean" value="true"/>
+  </node>
   ?>
 
 </launch>
-
