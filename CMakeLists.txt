@@ -49,6 +49,17 @@ catkin_python_setup()
 #   Message2.msg
 # )
 
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  geometry_msgs
+)
+
+add_message_files(
+  DIRECTORY msg
+  FILES
+  MarkerImage.msg
+)
+
 ## Generate services in the 'srv' folder
 add_service_files( FILES
  delete.srv
@@ -69,6 +80,7 @@ add_service_files( FILES
 generate_messages(
  DEPENDENCIES
  # std_msgs  # Or other packages containing msgs
+ geometry_msgs
 )
 
 ################################################
