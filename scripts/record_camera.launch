@@ -1,26 +1,14 @@
 <launch>
   <include file="$(find cassandra_ros)/launch/cassandraBag.launch" />
 
-  <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" respawn="false" output="log">
-    <param name="video_device"  type="string" value="/dev/video0"/>
-    <param name="camera_name" type="string" value="camera"/>
-    <param name="camera_frame_id" type="string" value="usb_cam"/>
-    <param name="io_method"   type="string" value="mmap"/>
-    <param name="image_width" type="int"  value="640"/>
-    <param name="image_height"  type="int"  value="480"/>
-    <param name="autofocus"     type="boolean"  value="true"/>
-    <param name="pixel_format"  type="string" value="yuyv"/>
-    <param name="camera_info_url"  type="string" value="file:///etc/camera_calibration.yaml"/>
-    <rosparam param="D">[0.025923, -0.069177, -0.002558, -0.008959, 0.000000]</rosparam>
-    <rosparam param="K">[1354.768099, 0.0, 723.738031, 0.0, 1356.739603, 552.577576, 0.0, 0.0, 1.0]</rosparam>
-    <rosparam param="R">[1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]</rosparam>
-    <rosparam param="P">[1349.716107, 0.0, 708.704543, 0.0, 0.0, 1365.086320, 549.198108, 0.0, 0.0, 0.0, 1.0, 0.0]</rosparam>
+  <node ns="camera" pkg="libuvc_camera" type="camera_node" name="uvc_camera" output="screen">
+    <param name="width" type="int" value="640" />
+    <param name="height" type="int" value="480" />
+    <param name="fps" type="int" value="30" />
+    <param name="frame" type="string" value="camera" />
+    <param name="device" type="string" value="/dev/video1" />
+    <param name="camera_info_url" value="file:///etc/camera_calibration.yaml"/>
   </node>
-
-  <node pkg="topic_tools" type="relay" name="relay_imgraw"
-    args ="/usb_cam/image_raw /camera/image_raw" />
-  <node pkg="topic_tools" type="relay" name="relay_caminfo"
-    args ="/usb_cam/camera_info /camera/camera_info" />
 
   <node name="image_proc" pkg="image_proc" type="image_proc" ns="camera"/>
 
